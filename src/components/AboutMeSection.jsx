@@ -187,7 +187,7 @@ export default function AboutMeSection() {
                   whiteSpace: 'nowrap',
                   transition: 'color 0.3s ease',
                 }}>
-                  {open ? 'just me and colors again 🎨' : 'where things come together ✦'}
+                  {open ? 'more than just code  🎭' : 'where things come together ✦'}
                 </p>
               </div>
 

@@ -83,9 +83,11 @@ function NavLink({ href, children, external }) {
 }
 
 export default function Navbar() {
+  const { isDark } = useTheme();
   const [hovered, setHovered] = useState(false);
   const [pulse, setPulse] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const lineColor = isDark ? '#fff' : '#111';
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -102,7 +104,8 @@ export default function Navbar() {
     <>
       <nav
         id="navbar"
-        className="fixed top-0 left-0 w-full z-50 px-5 md:px-16 py-5 md:py-6 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-gray-200/40"
+        className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/40"
+        style={{ padding: '0 20px', height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
       >
         {/* Logo */}
         <a
@@ -111,36 +114,31 @@ export default function Navbar() {
           aria-label="Home"
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
-          style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+          style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
         >
-          <span
-            style={{
-              position: 'absolute',
-              inset: '-6px',
-              borderRadius: '50%',
-              background: '#111',
-              opacity: hovered ? 0.08 : pulse ? 0.05 : 0,
-              transform: hovered ? 'scale(1.3)' : pulse ? 'scale(1.15)' : 'scale(1)',
-              transition: 'opacity 0.4s ease, transform 0.4s ease',
-              pointerEvents: 'none',
-            }}
-          />
-          <span
-            style={{
-              display: 'inline-block',
-              transform: hovered ? 'scale(1.25) rotate(-8deg)' : pulse ? 'scale(1.1)' : 'scale(1)',
-              transition: 'transform 0.4s cubic-bezier(0.34,1.56,0.64,1)',
-              position: 'relative',
-              zIndex: 1,
-            }}
-          >
+          <span style={{
+            position: 'absolute', inset: '-6px', borderRadius: '50%', background: '#111',
+            opacity: hovered ? 0.08 : pulse ? 0.05 : 0,
+            transform: hovered ? 'scale(1.3)' : pulse ? 'scale(1.15)' : 'scale(1)',
+            transition: 'opacity 0.4s ease, transform 0.4s ease', pointerEvents: 'none',
+          }} />
+          <span style={{
+            display: 'inline-block',
+            transform: hovered ? 'scale(1.25) rotate(-8deg)' : pulse ? 'scale(1.1)' : 'scale(1)',
+            transition: 'transform 0.4s cubic-bezier(0.34,1.56,0.64,1)',
+            position: 'relative', zIndex: 1,
+          }}>
             स
           </span>
         </a>
 
-        {/* Desktop nav links */}
-        <div className="hidden md:flex items-center gap-10">
+        {/* Desktop nav links — absolutely centered */}
+        <div
+          className="hidden md:flex items-center gap-8"
+          style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}
+        >
           {[
+            { label: 'Home', href: '/' },
             { label: 'Work', href: '#work' },
             { label: 'Blog', href: '#blog' },
             { label: 'About', href: '#about' },
@@ -149,28 +147,37 @@ export default function Navbar() {
           ].map((link) => (
             <NavLink key={link.label} href={link.href} external={link.external}>{link.label}</NavLink>
           ))}
+        </div>
+
+        {/* Right: theme toggle */}
+        <div className="hidden md:flex items-center" style={{ flexShrink: 0 }}>
           <ThemeToggle />
         </div>
 
         {/* Hamburger button — mobile only */}
         <button
-          className="md:hidden flex flex-col justify-center items-center gap-[5px] w-8 h-8 z-50 interactive"
+          className="md:hidden flex flex-col justify-center items-center interactive"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
+          style={{
+            gap: '5px', width: 40, height: 40,
+            background: 'transparent', border: 'none', cursor: 'pointer',
+            flexShrink: 0, zIndex: 60, padding: 0,
+          }}
         >
           <span style={{
-            display: 'block', width: 22, height: 1.5, background: '#111',
-            transform: menuOpen ? 'translateY(6.5px) rotate(45deg)' : 'none',
+            display: 'block', width: 24, height: '2px', background: lineColor, borderRadius: 2,
+            transform: menuOpen ? 'translateY(7px) rotate(45deg)' : 'none',
             transition: 'transform 0.3s ease',
           }} />
           <span style={{
-            display: 'block', width: 22, height: 1.5, background: '#111',
+            display: 'block', width: 24, height: '2px', background: lineColor, borderRadius: 2,
             opacity: menuOpen ? 0 : 1,
             transition: 'opacity 0.2s ease',
           }} />
           <span style={{
-            display: 'block', width: 22, height: 1.5, background: '#111',
-            transform: menuOpen ? 'translateY(-6.5px) rotate(-45deg)' : 'none',
+            display: 'block', width: 24, height: '2px', background: lineColor, borderRadius: 2,
+            transform: menuOpen ? 'translateY(-7px) rotate(-45deg)' : 'none',
             transition: 'transform 0.3s ease',
           }} />
         </button>
@@ -194,6 +201,7 @@ export default function Navbar() {
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           {[
+            { label: 'Home', href: '/' },
             { label: 'Work', href: '#work' },
             { label: 'Blog', href: '#blog' },
             { label: 'About', href: '#about' },

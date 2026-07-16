@@ -1,164 +1,36 @@
-import { useState } from 'react';
-
 const accent = '#F9A66C';
 const pink   = '#F17A7E';
 
 const experience = [
-  { title: 'Visual Designer & Project Manager', place: 'The GIT Creative Agency, USA', period: 'Jan 2026 – Present' },
-  { title: 'Visual Designer', place: 'Arizona State University (Work+ Learn), USA', period: 'Aug 2025 – Present' },
-  { title: 'Visual Design Intern', place: 'Suroskie Beauty, India', period: 'Jan 2025 – June 2025' },
-  { title: 'UI/UX Design Intern', place: 'Grapes Worldwide, India', period: 'May 2024 – July 2024' },
+  { title: 'Software Engineer', place: 'Capgemini', period: '2025 – Present', type: 'work' },
+  { title: 'Backend Development Intern', place: 'InnoTech Innovations', period: '2024', type: 'work' },
+  { title: 'Bachelor of Computer Engineering', place: 'Sinhgad College of Engineering', period: '2022 – 2025', type: 'edu' },
+  { title: 'Diploma in Computer Technology', place: 'Government Polytechnic, Nashik', period: '2019 – 2022', type: 'edu' },
 ];
 
-const education = [
-  { title: 'Arizona State University, Arizona', sub: 'Master of Science in User Experience', period: 'Expected: 12/2026' },
-  { title: 'Sharda University, India', sub: 'Bachelor of Design in Communication Design', period: 'Graduation: 2025' },
-];
+const BriefcaseIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="7" width="20" height="14" rx="2"/>
+    <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+    <line x1="12" y1="12" x2="12" y2="12"/>
+    <path d="M2 12h20"/>
+  </svg>
+);
 
-const certifications = [
-  { title: 'Foundations of User Experience (UX) Design', issuer: 'Google' },
-];
-
-// Each skill/tool maps to the projects that used it
-const skillProjects = {
-  'User Interface Design':  ['EchoTouch', 'Work+'],
-  'Graphic Design':  ['Suroskie Beauty', 'Every Girl, A Bright Future', 'Beyond The Letter', 'GIT Creative Agency'],
-  'Wireframing':     ['EchoTouch'],
-  'Photo Editing':   ['Suroskie Beauty', 'Work+', 'Beyond The Letter'],
-  'User Flows':      ['EchoTouch'],
-  'Visual Design':   ['Suroskie Beauty', 'Beyond The Letter', 'Work+', 'Every Girl, A Bright Future', 'GIT Creative Agency'],
-  'Storyboarding':   ['Every Girl, A Bright Future'],
-  'Accessibility':   ['EchoTouch'],
-  'User Research':   ['EchoTouch', 'Every Girl, A Bright Future'],
-  'Communication':   ['Every Girl, A Bright Future', 'Work+', 'Suroskie Beauty', 'GIT Creative Agency'],
-  'Typography':      ['Beyond The Letter', 'Work+', 'Every Girl, A Bright Future', 'GIT Creative Agency'],
-  'Composition':     ['Beyond The Letter', 'Suroskie Beauty', 'Every Girl, A Bright Future', 'GIT Creative Agency'],
-  'Collaborative':   ['Work+', 'Suroskie Beauty', 'GIT Creative Agency'],
-  'Creative':        ['EchoTouch', 'Suroskie Beauty', 'Beyond The Letter', 'Every Girl, A Bright Future', 'Work+', 'GIT Creative Agency'],
-  'Detail-Oriented': ['EchoTouch', 'Beyond The Letter', 'Every Girl, A Bright Future', 'GIT Creative Agency'],
-};
-
-const toolProjects = {
-  'Figma':                 ['EchoTouch', 'Work+', 'GIT Creative Agency'],
-  'Adobe Illustrator':     ['Suroskie Beauty', 'Beyond The Letter', 'Every Girl, A Bright Future', 'Work+', 'GIT Creative Agency'],
-  'Adobe Photoshop':       ['Suroskie Beauty', 'Work+'],
-  'Adobe InDesign':        ['Beyond The Letter', 'GIT Creative Agency'],
-  'Adobe After Effects':   ['EchoTouch'],
-  'Miro Board':            ['Work+'],
-  'Monday Board':          ['Work+'],
-  'Slack':                 ['Work+', 'GIT Creative Agency'],
-};
-
-// Project accent colours for the pill badges in tooltip
-const projectColor = {
-  'EchoTouch':             '#667eea',
-  'Work+':                 '#8B5CF6',
-  'Every Girl, A Bright Future': '#2c5364',
-  'Suroskie Beauty':       '#F9A66C',
-  'Beyond The Letter':     '#F17A7E',
-  'GIT Creative Agency':   '#4a7c59',
-};
-
-function SkillTag({ label, projects }) {
-  const [hovered, setHovered] = useState(false);
-
-  return (
-    <span style={{ position: 'relative', display: 'inline-block' }}>
-      {/* Tooltip */}
-      {hovered && projects && projects.length > 0 && (
-        <span style={{
-          position: 'absolute',
-          bottom: 'calc(100% + 10px)',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          background: '#fff',
-          borderRadius: '14px',
-          padding: '10px 14px',
-          zIndex: 999,
-          whiteSpace: 'nowrap',
-          boxShadow: '0 8px 28px rgba(249,166,108,0.18), 0 2px 8px rgba(0,0,0,0.07)',
-          border: '1px solid #f0ece8',
-          pointerEvents: 'none',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '5px',
-          minWidth: '140px',
-        }}>
-          {/* Arrow */}
-          <span style={{
-            position: 'absolute',
-            top: '100%',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: 0, height: 0,
-            borderLeft: '6px solid transparent',
-            borderRight: '6px solid transparent',
-            borderTop: '6px solid #f0ece8',
-          }} />
-          <span style={{
-            fontSize: 9, fontWeight: 700, letterSpacing: '0.18em',
-            textTransform: 'uppercase', color: accent,
-            marginBottom: 2,
-          }}>Used in</span>
-          {projects.map((p, i) => (
-            <span key={i} style={{
-              display: 'inline-flex', alignItems: 'center', gap: 6,
-            }}>
-              <span style={{
-                width: 7, height: 7, borderRadius: '50%',
-                background: projectColor[p] || accent,
-                flexShrink: 0,
-              }} />
-              <span style={{ fontSize: 12, fontWeight: 500, color: '#444' }}>{p}</span>
-            </span>
-          ))}
-        </span>
-      )}
-
-      {/* The tag itself */}
-      <span
-        style={{
-          fontSize: 13, fontWeight: 500, color: hovered ? '#fff' : '#555',
-          background: hovered ? `linear-gradient(135deg, ${accent}, ${pink})` : '#fff',
-          border: hovered ? '1px solid transparent' : '1px solid #f0ece8',
-          borderRadius: '20px', padding: '6px 14px',
-          cursor: 'default',
-          transition: 'all 0.25s cubic-bezier(0.34,1.56,0.64,1)',
-          display: 'inline-block',
-          transform: hovered ? 'translateY(-3px) scale(1.05)' : 'translateY(0) scale(1)',
-          boxShadow: hovered ? '0 6px 18px rgba(249,166,108,0.35)' : 'none',
-        }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-      >
-        {label}
-      </span>
-    </span>
-  );
-}
-
-function Block({ title, children }) {
-  return (
-    <div style={{ marginBottom: 40 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-        <p style={{
-          fontSize: 11, fontWeight: 700, letterSpacing: '0.2em',
-          textTransform: 'uppercase', color: accent,
-        }}>{title}</p>
-        <div style={{ flex: 1, height: 1, background: '#f0ece8' }} />
-      </div>
-      {children}
-    </div>
-  );
-}
+const GradCapIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+    <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/>
+  </svg>
+);
 
 export default function ResumeSection() {
   return (
-    <section className="py-16 md:py-24 px-6 md:px-36 bg-white">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-16 md:py-24 px-6 md:px-20 bg-white">
+      <div style={{ maxWidth: 640, margin: '0 auto' }}>
 
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-14">
           <h2 className="font-bold text-gray-900 leading-tight mb-4"
             style={{ fontSize: 'clamp(1.8rem, 4vw, 3.2rem)' }}>
             Here's a{' '}
@@ -177,92 +49,75 @@ export default function ResumeSection() {
           }}>if you haven't gone through my resume yet —</p>
         </div>
 
-        {/* Top: Experience + Education */}
-        <div className="grid md:grid-cols-2 gap-12 mb-4">
-
-          {/* Experience */}
-          <div>
-            <Block title="Experience">
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-                {experience.map((item, i) => (
-                  <div key={i} style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                    <div style={{
-                      flexShrink: 0, width: 8, height: 8, borderRadius: '50%',
-                      background: `linear-gradient(135deg, ${accent}, ${pink})`,
-                      marginTop: 7,
-                    }} />
-                    <div>
-                      <p style={{ fontSize: 15, fontWeight: 700, color: '#1a1a1a', marginBottom: 3 }}>{item.title}</p>
-                      <p style={{ fontSize: 13, color: '#888', lineHeight: 1.6 }}>{item.place} | {item.period}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </Block>
-          </div>
-
-          {/* Education + Certifications */}
-          <div>
-            <Block title="Education">
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-                {education.map((item, i) => (
-                  <div key={i} style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                    <div style={{
-                      flexShrink: 0, width: 8, height: 8, borderRadius: '50%',
-                      background: `linear-gradient(135deg, ${accent}, ${pink})`,
-                      marginTop: 7,
-                    }} />
-                    <div>
-                      <p style={{ fontSize: 15, fontWeight: 700, color: '#1a1a1a', marginBottom: 3 }}>{item.title}</p>
-                      <p style={{ fontSize: 13, color: '#888', lineHeight: 1.6 }}>{item.sub} | {item.period}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </Block>
-
-            <Block title="Certifications">
-              {certifications.map((item, i) => (
-                <div key={i} style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                  <div style={{
-                    flexShrink: 0, width: 8, height: 8, borderRadius: '50%',
-                    background: `linear-gradient(135deg, ${accent}, ${pink})`,
-                    marginTop: 7,
-                  }} />
-                  <div>
-                    <p style={{ fontSize: 15, fontWeight: 700, color: '#1a1a1a', marginBottom: 3 }}>{item.title}</p>
-                    <p style={{ fontSize: 13, color: '#888' }}>{item.issuer}</p>
-                  </div>
-                </div>
-              ))}
-            </Block>
-          </div>
+        {/* Section label */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 32 }}>
+          <div style={{ flex: 1, height: 1, background: '#f0ece8' }} />
+          <p style={{
+            fontSize: 11, fontWeight: 700, letterSpacing: '0.22em',
+            textTransform: 'uppercase', color: accent, whiteSpace: 'nowrap',
+          }}>Experience</p>
+          <div style={{ flex: 1, height: 1, background: '#f0ece8' }} />
         </div>
 
-        {/* Bottom: Skills + Tools */}
-        <div style={{ background: '#fdf8f5', borderRadius: '1.5rem', padding: '40px 48px', position: 'relative', zIndex: 1, overflow: 'visible' }}>
-          <div className="grid md:grid-cols-2 gap-12">
+        {/* Timeline */}
+        <div style={{ position: 'relative', paddingLeft: 44 }}>
+          {/* Vertical line */}
+          <div style={{
+            position: 'absolute',
+            left: 15,
+            top: 8,
+            bottom: 8,
+            width: 2,
+            background: 'linear-gradient(to bottom, #F9A66C, #F17A7E)',
+            borderRadius: 2,
+            opacity: 0.2,
+          }} />
 
-            {/* Skills */}
-            <div>
-              <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: accent, marginBottom: 16 }}>Skills</p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                {Object.keys(skillProjects).map((s, i) => (
-                  <SkillTag key={i} label={s} projects={skillProjects[s]} />
-                ))}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
+            {experience.map((item, i) => (
+              <div key={i} style={{ position: 'relative' }}>
+                {/* Icon badge on the line */}
+                <div style={{
+                  position: 'absolute',
+                  left: -44,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  width: 32,
+                  height: 32,
+                  borderRadius: '50%',
+                  background: item.type === 'work'
+                    ? `linear-gradient(135deg, ${accent}, ${pink})`
+                    : 'linear-gradient(135deg, #667eea, #764ba2)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#fff',
+                  boxShadow: '0 0 0 3px #fff, 0 0 0 4px rgba(249,166,108,0.2)',
+                  flexShrink: 0,
+                }}>
+                  {item.type === 'work' ? <BriefcaseIcon /> : <GradCapIcon />}
+                </div>
+
+                {/* Card */}
+                <div style={{
+                  background: '#fdf8f5',
+                  borderRadius: '1rem',
+                  padding: '18px 22px',
+                  border: '1px solid #f0ece8',
+                }}>
+                  <p style={{ fontSize: 15, fontWeight: 700, color: '#1a1a1a', marginBottom: 5 }}>{item.title}</p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 12px', alignItems: 'center' }}>
+                    <p style={{ fontSize: 13, color: '#888' }}>{item.place}</p>
+                    <span style={{ color: '#ddd', fontSize: 12 }}>·</span>
+                    <p style={{
+                      fontSize: 11, fontWeight: 600, letterSpacing: '0.06em',
+                      color: item.type === 'work' ? accent : '#764ba2',
+                      textTransform: 'uppercase',
+                    }}>{item.period}</p>
+                  </div>
+                </div>
               </div>
-            </div>
-
-            {/* Tools */}
-            <div>
-              <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: accent, marginBottom: 16 }}>Tools & Software</p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                {Object.keys(toolProjects).map((t, i) => (
-                  <SkillTag key={i} label={t} projects={toolProjects[t]} />
-                ))}
-              </div>
-            </div>
-
+            ))}
           </div>
         </div>
 

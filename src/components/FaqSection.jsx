@@ -133,7 +133,7 @@ export default function FaqSection() {
               {[
                 { label: 'Response time', value: 'Within 24–48 hrs' },
                 { label: 'Availability', value: 'Open to work ✦' },
-                { label: 'Based in', value: 'United States' },
+                { label: 'Based in', value: 'Bangalore, India' },
               ].map((item) => (
                 <div key={item.label} style={{
                   display: 'flex',

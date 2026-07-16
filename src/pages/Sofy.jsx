@@ -42,7 +42,7 @@ export default function Sofy() {
             fontSize: 'clamp(15px, 2vw, 20px)',
             color: accent, letterSpacing: '0.06em', marginBottom: 16,
           }}>
-            UI/UX · Design System
+             Design System
           </p>
 
           <h1 className="font-bold text-gray-900 leading-tight mb-6"

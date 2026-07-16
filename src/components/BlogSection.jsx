@@ -20,15 +20,6 @@ const posts = [
     bg: 'linear-gradient(145deg, #667eea 0%, #764ba2 100%)',
     textColor: '#fff',
   },
-  {
-    num: '03',
-    title: 'Why Your Portfolio Is Losing You Jobs (And How to Fix It)',
-    description: 'What hiring managers actually look for in a design portfolio — and the small tweaks that make a big difference in getting callbacks.',
-    category: 'Career · Portfolio',
-    date: 'February 2025',
-    bg: 'linear-gradient(145deg, #0f2027 0%, #2c5364 100%)',
-    textColor: '#fff',
-  },
 ];
 
 export default function BlogSection() {
@@ -37,7 +28,7 @@ export default function BlogSection() {
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
-        <div className="mb-12">
+        <div className="mb-12 text-center">
           <p style={{
             fontFamily: '"Caveat", cursive',
             fontSize: 'clamp(14px, 2.5vw, 18px)',
@@ -59,8 +50,8 @@ export default function BlogSection() {
           </h2>
         </div>
 
-        {/* Cards grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 24 }}>
+        {/* Cards grid — centered with max width for 2 cards */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 24, maxWidth: 760, margin: '0 auto' }}>
           {posts.map((post) => (
             <div
               key={post.num}

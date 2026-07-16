@@ -174,7 +174,7 @@ export default function HeroSection() {
                 width: 'clamp(130px, 12vw, 190px)',
               }}>
                 <img
-                  src="/Shreya6.png"
+                  src="/sanika6.png"
                   alt="Childhood"
                   style={{
                     width: '100%',
@@ -214,7 +214,7 @@ export default function HeroSection() {
                 width: 'clamp(200px, 18vw, 300px)',
               }}>
                 <img
-                  src="/shreya7.JPG?v=2"
+                  src="/sanika7.png"
                   alt="Sanika Dalal"
                   style={{
                     width: '100%',
@@ -247,7 +247,7 @@ export default function HeroSection() {
               flexShrink: 0,
             }}>
               <img
-                src="/Shreya6.png"
+                src="/sanika6.png"
                 alt="Childhood"
                 style={{
                   width: '100%',
@@ -275,8 +275,8 @@ export default function HeroSection() {
               flexShrink: 0,
             }}>
               <img
-                src="/shreya7.JPG?v=2"
-                alt="Shreya Chadha"
+                src="/sanika7.png"
+                alt="Sanika Dalal"
                 style={{
                   width: '100%',
                   aspectRatio: '1 / 1.1',

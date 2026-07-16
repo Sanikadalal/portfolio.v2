@@ -1,12 +1,21 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProjectNav() {
   const [hovered, setHovered] = useState(false);
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate('/');
+    setTimeout(() => {
+      document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  };
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 px-5 md:px-16 py-5 md:py-6 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-gray-200/40">
 
-      {/* Logo — identical to Navbar */}
+      {/* Logo */}
       <a
         href="/"
         className="font-bold text-3xl md:text-4xl tracking-tight interactive relative text-gray-900"
@@ -32,27 +41,30 @@ export default function ProjectNav() {
           position: 'relative',
           zIndex: 1,
         }}>
-          श्र
+          स
         </span>
       </a>
 
       {/* Back link */}
-      <a
-        href="/#work"
+      <button
+        onClick={handleBack}
         className="interactive"
         style={{
           fontSize: 'clamp(12px, 3vw, 14px)',
           fontWeight: 500,
           color: '#555',
-          textDecoration: 'none',
+          background: 'none',
+          border: 'none',
+          cursor: 'pointer',
           transition: 'color 0.2s ease',
           letterSpacing: '0.01em',
+          padding: 0,
         }}
         onMouseEnter={e => e.currentTarget.style.color = '#1a1a1a'}
         onMouseLeave={e => e.currentTarget.style.color = '#555'}
       >
         ← Back to Work
-      </a>
+      </button>
     </nav>
   );
 }

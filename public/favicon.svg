@@ -1,16 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48" height="48" viewBox="0 0 48 48">
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
   <defs>
-    <clipPath id="circle">
-      <circle cx="24" cy="24" r="24" />
-    </clipPath>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F9A66C"/>
+      <stop offset="100%" stop-color="#F17A7E"/>
+    </linearGradient>
   </defs>
-  <image
-    href="/favicon.png"
-    x="0"
-    y="0"
-    width="48"
-    height="48"
-    clip-path="url(#circle)"
-    preserveAspectRatio="xMidYMid slice"
-  />
+  <rect width="48" height="48" rx="13" fill="#111111"/>
+  <text
+    x="24"
+    y="35"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="31"
+    font-weight="700"
+    font-style="italic"
+    fill="url(#g)"
+    text-anchor="middle"
+  >S</text>
+  <circle cx="37" cy="11" r="3" fill="#F9A66C"/>
 </svg>
