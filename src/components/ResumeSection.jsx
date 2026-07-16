@@ -1,3 +1,5 @@
+import { useTheme } from '../context/ThemeContext';
+
 const accent = '#F9A66C';
 const pink   = '#F17A7E';
 
@@ -25,94 +27,88 @@ const GradCapIcon = () => (
 );
 
 export default function ResumeSection() {
+  const { isDark } = useTheme();
+
+  const bg         = isDark ? '#0f0f0f' : '#ffffff';
+  const cardBg     = '#111111';
+  const cardBorder = 'rgba(255,255,255,0.07)';
+  const titleColor = '#ffffff';
+  const subColor   = 'rgba(255,255,255,0.4)';
+  const divider    = isDark ? 'rgba(255,255,255,0.1)' : '#f0ece8';
+  const ringColor  = isDark ? '#0f0f0f' : '#ffffff';
+
   return (
-    <section className="py-16 md:py-24 px-6 md:px-20 bg-white">
+    <section className="py-16 md:py-24 px-6 md:px-20" style={{ background: bg, transition: 'background 0.3s ease' }}>
       <div style={{ maxWidth: 640, margin: '0 auto' }}>
 
         {/* Header */}
         <div className="text-center mb-14">
-          <h2 className="font-bold text-gray-900 leading-tight mb-4"
-            style={{ fontSize: 'clamp(1.8rem, 4vw, 3.2rem)' }}>
+          <h2 className="font-bold leading-tight mb-4"
+            style={{ fontSize: 'clamp(1.8rem, 4vw, 3.2rem)', color: titleColor }}>
             Here's a{' '}
-            <em style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              color: accent,
-              fontStyle: 'italic',
-              fontWeight: 400,
-            }}>quick look ✦</em>
+            <em style={{ fontFamily: "'Cormorant Garamond', serif", color: accent, fontStyle: 'italic', fontWeight: 400 }}>
+              quick look ✦
+            </em>
           </h2>
-          <p style={{
-            fontFamily: '"Caveat", cursive',
-            fontSize: 'clamp(14px, 2.5vw, 18px)',
-            color: '#888',
-            letterSpacing: '0.02em',
-          }}>if you haven't gone through my resume yet —</p>
+          <p style={{ fontFamily: '"Caveat", cursive', fontSize: 'clamp(14px, 2.5vw, 18px)', color: subColor, letterSpacing: '0.02em' }}>
+            if you haven't gone through my resume yet —
+          </p>
         </div>
 
         {/* Section label */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 32 }}>
-          <div style={{ flex: 1, height: 1, background: '#f0ece8' }} />
-          <p style={{
-            fontSize: 11, fontWeight: 700, letterSpacing: '0.22em',
-            textTransform: 'uppercase', color: accent, whiteSpace: 'nowrap',
-          }}>Experience</p>
-          <div style={{ flex: 1, height: 1, background: '#f0ece8' }} />
+          <div style={{ flex: 1, height: 1, background: divider }} />
+          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: accent, whiteSpace: 'nowrap' }}>
+            Experience
+          </p>
+          <div style={{ flex: 1, height: 1, background: divider }} />
         </div>
 
         {/* Timeline */}
         <div style={{ position: 'relative', paddingLeft: 44 }}>
           {/* Vertical line */}
           <div style={{
-            position: 'absolute',
-            left: 15,
-            top: 8,
-            bottom: 8,
-            width: 2,
+            position: 'absolute', left: 15, top: 8, bottom: 8, width: 2,
             background: 'linear-gradient(to bottom, #F9A66C, #F17A7E)',
-            borderRadius: 2,
-            opacity: 0.2,
+            borderRadius: 2, opacity: 0.25,
           }} />
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
             {experience.map((item, i) => (
               <div key={i} style={{ position: 'relative' }}>
-                {/* Icon badge on the line */}
+                {/* Icon badge */}
                 <div style={{
-                  position: 'absolute',
-                  left: -44,
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  width: 32,
-                  height: 32,
-                  borderRadius: '50%',
+                  position: 'absolute', left: -44, top: '50%', transform: 'translateY(-50%)',
+                  width: 32, height: 32, borderRadius: '50%',
                   background: item.type === 'work'
                     ? `linear-gradient(135deg, ${accent}, ${pink})`
                     : 'linear-gradient(135deg, #667eea, #764ba2)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
                   color: '#fff',
-                  boxShadow: '0 0 0 3px #fff, 0 0 0 4px rgba(249,166,108,0.2)',
+                  boxShadow: `0 0 0 3px ${ringColor}, 0 0 0 4px rgba(249,166,108,0.2)`,
                   flexShrink: 0,
+                  transition: 'box-shadow 0.3s ease',
                 }}>
                   {item.type === 'work' ? <BriefcaseIcon /> : <GradCapIcon />}
                 </div>
 
                 {/* Card */}
                 <div style={{
-                  background: '#fdf8f5',
+                  background: cardBg,
                   borderRadius: '1rem',
                   padding: '18px 22px',
-                  border: '1px solid #f0ece8',
+                  border: `1px solid ${cardBorder}`,
+                  transition: 'background 0.3s ease, border-color 0.3s ease',
                 }}>
-                  <p style={{ fontSize: 15, fontWeight: 700, color: '#1a1a1a', marginBottom: 5 }}>{item.title}</p>
+                  <p style={{ fontSize: 15, fontWeight: 700, color: titleColor, marginBottom: 5, transition: 'color 0.3s ease' }}>
+                    {item.title}
+                  </p>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 12px', alignItems: 'center' }}>
-                    <p style={{ fontSize: 13, color: '#888' }}>{item.place}</p>
-                    <span style={{ color: '#ddd', fontSize: 12 }}>·</span>
+                    <p style={{ fontSize: 13, color: subColor }}>{item.place}</p>
+                    <span style={{ color: isDark ? '#444' : '#ddd', fontSize: 12 }}>·</span>
                     <p style={{
-                      fontSize: 11, fontWeight: 600, letterSpacing: '0.06em',
+                      fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase',
                       color: item.type === 'work' ? accent : '#764ba2',
-                      textTransform: 'uppercase',
                     }}>{item.period}</p>
                   </div>
                 </div>

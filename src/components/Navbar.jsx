@@ -143,7 +143,7 @@ export default function Navbar() {
             { label: 'Blog', href: '#blog' },
             { label: 'About', href: '#about' },
             { label: 'Contact', href: '#contact' },
-            { label: 'Resume ↗', href: '/resume.pdf', external: true },
+            { label: 'Resume ↗', href: '/resume.pdf?v=2', external: true },
           ].map((link) => (
             <NavLink key={link.label} href={link.href} external={link.external}>{link.label}</NavLink>
           ))}
@@ -206,7 +206,7 @@ export default function Navbar() {
             { label: 'Blog', href: '#blog' },
             { label: 'About', href: '#about' },
             { label: 'Contact', href: '#contact' },
-            { label: 'Resume ↗', href: '/resume.pdf', external: true },
+            { label: 'Resume ↗', href: '/resume.pdf?v=2', external: true },
           ].map((link) => (
             <a
               key={link.label}

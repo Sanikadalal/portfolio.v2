@@ -126,7 +126,7 @@ export default function HeroSection() {
                 maxWidth: '190px',
                 lineHeight: 1.35,
               }}>
-                colors were my very first love — long before I had a name for it 🎨
+                 it all started with one question: "how does this work?"  💭
               </p>
               <svg width="48" height="44" viewBox="0 0 48 44" style={{ marginTop: '2px', marginLeft: '30px' }}>
                 <path d="M 4 4 C 10 18, 28 32, 40 40" stroke="#c8c8c8" fill="none" strokeWidth="1.5" strokeLinecap="round"/>
@@ -150,7 +150,7 @@ export default function HeroSection() {
                 lineHeight: 1.35,
                 textAlign: 'right',
               }}>
-                that obsession quietly shaped me into a designer ✦
+                that obsession quietly shaped me ✦
               </p>
             </div>
 

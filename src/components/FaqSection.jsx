@@ -140,7 +140,7 @@ export default function FaqSection() {
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   padding: '12px 0',
-                  borderBottom: '1px solid #f0ece8',
+                  borderBottom: '1px dashed rgba(0,0,0,0.08)',
                 }}>
                   <span style={{ fontSize: 12, color: '#888', letterSpacing: '0.06em', textTransform: 'uppercase', fontWeight: 600 }}>{item.label}</span>
                   <span style={{ fontSize: 13, color: '#555', fontWeight: 600 }}>{item.value}</span>
