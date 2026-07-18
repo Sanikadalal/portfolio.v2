@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d0d0d"/>
+      <stop offset="100%" style="stop-color:#1a1025"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F9A66C"/>
+      <stop offset="100%" style="stop-color:#F17A7E"/>
+    </linearGradient>
+    <linearGradient id="purple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bg)"/>
+
+  <!-- Grid dots -->
+  <g opacity="0.12" fill="#ffffff">
+    <circle cx="80" cy="80" r="1.5"/><circle cx="160" cy="80" r="1.5"/><circle cx="240" cy="80" r="1.5"/>
+    <circle cx="320" cy="80" r="1.5"/><circle cx="400" cy="80" r="1.5"/><circle cx="480" cy="80" r="1.5"/>
+    <circle cx="560" cy="80" r="1.5"/><circle cx="640" cy="80" r="1.5"/><circle cx="720" cy="80" r="1.5"/>
+    <circle cx="80" cy="160" r="1.5"/><circle cx="160" cy="160" r="1.5"/><circle cx="240" cy="160" r="1.5"/>
+    <circle cx="320" cy="160" r="1.5"/><circle cx="480" cy="160" r="1.5"/>
+    <circle cx="560" cy="160" r="1.5"/><circle cx="640" cy="160" r="1.5"/><circle cx="720" cy="160" r="1.5"/>
+    <circle cx="80" cy="240" r="1.5"/><circle cx="160" cy="240" r="1.5"/><circle cx="240" cy="240" r="1.5"/>
+    <circle cx="560" cy="240" r="1.5"/><circle cx="640" cy="240" r="1.5"/><circle cx="720" cy="240" r="1.5"/>
+    <circle cx="80" cy="320" r="1.5"/><circle cx="160" cy="320" r="1.5"/><circle cx="640" cy="320" r="1.5"/><circle cx="720" cy="320" r="1.5"/>
+    <circle cx="80" cy="400" r="1.5"/><circle cx="160" cy="400" r="1.5"/><circle cx="640" cy="400" r="1.5"/><circle cx="720" cy="400" r="1.5"/>
+  </g>
+
+  <!-- Left block: Document store -->
+  <rect x="60" y="170" width="130" height="44" rx="10" fill="rgba(102,126,234,0.15)" stroke="rgba(102,126,234,0.4)" stroke-width="1"/>
+  <text x="125" y="197" text-anchor="middle" fill="#667eea" font-family="monospace" font-size="12" font-weight="600">doc_store</text>
+
+  <rect x="60" y="228" width="130" height="44" rx="10" fill="rgba(102,126,234,0.10)" stroke="rgba(102,126,234,0.25)" stroke-width="1"/>
+  <text x="125" y="255" text-anchor="middle" fill="rgba(102,126,234,0.7)" font-family="monospace" font-size="12">embeddings</text>
+
+  <rect x="60" y="286" width="130" height="44" rx="10" fill="rgba(102,126,234,0.10)" stroke="rgba(102,126,234,0.25)" stroke-width="1"/>
+  <text x="125" y="313" text-anchor="middle" fill="rgba(102,126,234,0.7)" font-family="monospace" font-size="12">vector_db</text>
+
+  <!-- Arrows left → center -->
+  <g filter="url(#glow)" opacity="0.8">
+    <line x1="192" y1="192" x2="290" y2="230" stroke="url(#purple)" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <polygon points="290,230 280,222 284,234" fill="#667eea"/>
+
+    <line x1="192" y1="250" x2="290" y2="250" stroke="url(#purple)" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <polygon points="290,250 280,244 280,256" fill="#667eea"/>
+
+    <line x1="192" y1="308" x2="290" y2="268" stroke="url(#purple)" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <polygon points="290,268 281,274 285,262" fill="#667eea"/>
+  </g>
+
+  <!-- Center: RAG brain node -->
+  <circle cx="360" cy="250" r="62" fill="rgba(249,166,108,0.08)" stroke="rgba(249,166,108,0.35)" stroke-width="1.5" filter="url(#glow)"/>
+  <circle cx="360" cy="250" r="44" fill="rgba(249,166,108,0.12)" stroke="rgba(249,166,108,0.5)" stroke-width="1"/>
+  <text x="360" y="244" text-anchor="middle" fill="url(#orange)" font-family="monospace" font-size="13" font-weight="700">RAG</text>
+  <text x="360" y="262" text-anchor="middle" fill="rgba(249,166,108,0.6)" font-family="monospace" font-size="9">retrieve</text>
+  <text x="360" y="274" text-anchor="middle" fill="rgba(249,166,108,0.6)" font-family="monospace" font-size="9">+ generate</text>
+
+  <!-- Arrows center → right -->
+  <g filter="url(#glow)" opacity="0.8">
+    <line x1="422" y1="230" x2="520" y2="192" stroke="url(#orange)" stroke-width="1.5"/>
+    <polygon points="520,192 510,200 516,188" fill="#F9A66C"/>
+
+    <line x1="424" y1="250" x2="520" y2="250" stroke="url(#orange)" stroke-width="1.5"/>
+    <polygon points="520,250 510,244 510,256" fill="#F9A66C"/>
+
+    <line x1="422" y1="268" x2="520" y2="308" stroke="url(#orange)" stroke-width="1.5"/>
+    <polygon points="520,308 511,296 523,302" fill="#F9A66C"/>
+  </g>
+
+  <!-- Right blocks: Output -->
+  <rect x="522" y="164" width="140" height="44" rx="10" fill="rgba(249,166,108,0.12)" stroke="rgba(249,166,108,0.35)" stroke-width="1"/>
+  <text x="592" y="191" text-anchor="middle" fill="#F9A66C" font-family="monospace" font-size="12" font-weight="600">context</text>
+
+  <rect x="522" y="228" width="140" height="44" rx="10" fill="rgba(249,166,108,0.12)" stroke="rgba(249,166,108,0.4)" stroke-width="1"/>
+  <text x="592" y="255" text-anchor="middle" fill="#F9A66C" font-family="monospace" font-size="12" font-weight="700">LLM output</text>
+
+  <rect x="522" y="292" width="140" height="44" rx="10" fill="rgba(249,166,108,0.08)" stroke="rgba(249,166,108,0.25)" stroke-width="1"/>
+  <text x="592" y="319" text-anchor="middle" fill="rgba(249,166,108,0.6)" font-family="monospace" font-size="12">grounded ✓</text>
+
+  <!-- Top label -->
+  <text x="400" y="108" text-anchor="middle" fill="rgba(255,255,255,0.08)" font-family="monospace" font-size="56" font-weight="900" letter-spacing="8">RAG</text>
+  <text x="400" y="138" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-family="'Georgia', serif" font-size="13" font-style="italic">Retrieval-Augmented Generation</text>
+
+  <!-- Bottom tag -->
+  <rect x="330" y="390" width="140" height="28" rx="14" fill="rgba(249,166,108,0.1)" stroke="rgba(249,166,108,0.3)" stroke-width="1"/>
+  <text x="400" y="409" text-anchor="middle" fill="rgba(249,166,108,0.8)" font-family="monospace" font-size="11" font-weight="600">no buzzwords 🚫</text>
+</svg>

@@ -168,6 +168,13 @@ body.hovering-link #cursor-dot {
   background: #9ca3af;
 }
 
+.footer-top-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -230,7 +237,11 @@ html {
   /* Footer top: single column on mobile */
   .footer-top-grid {
     grid-template-columns: 1fr !important;
-    gap: 32px !important;
+    gap: 36px !important;
+    text-align: center;
+  }
+  .contact-form-card {
+    text-align: left;
   }
 
   /* Custom cursor hidden on touch devices */

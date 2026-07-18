@@ -1,40 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 
 export default function HeroSection() {
   const [statusHovered, setStatusHovered] = useState(false);
-  const blobRef = useRef(null);
-  const sectionRef = useRef(null);
 
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (!blobRef.current) return;
-      blobRef.current.style.left = `${e.clientX}px`;
-      blobRef.current.style.top = `${e.clientY}px`;
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
 
   return (
-    <section ref={sectionRef} className="min-h-screen flex flex-col justify-center relative overflow-hidden bg-white">
+    <section className="min-h-screen flex flex-col justify-center relative overflow-hidden bg-white">
 
-      {/* Cursor color blob */}
-      <div
-        ref={blobRef}
-        style={{
-          position: 'fixed',
-          width: '500px',
-          height: '500px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(249,166,108,0.18) 0%, rgba(241,122,126,0.12) 40%, transparent 70%)',
-          transform: 'translate(-50%, -50%)',
-          pointerEvents: 'none',
-          zIndex: 0,
-          transition: 'left 0.12s ease, top 0.12s ease',
-          filter: 'blur(8px)',
-        }}
-      />
 
 {/* Main content */}
       <div className="w-full pl-6 md:pl-24 lg:pl-36 pr-4 md:pr-16 lg:pr-24 pt-28 pb-10 flex flex-col justify-between min-h-screen">

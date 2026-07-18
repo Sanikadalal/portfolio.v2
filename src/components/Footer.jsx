@@ -1,13 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Footer() {
   const [hovered, setHovered] = useState(false);
   const [pulse, setPulse] = useState(false);
   const [message, setMessage] = useState('');
   const [name, setName] = useState('');
-  const blobRef = useRef(null);
-  const footerRef = useRef(null);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setPulse(true);
@@ -16,40 +13,23 @@ export default function Footer() {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (!blobRef.current || !footerRef.current) return;
-      const rect = footerRef.current.getBoundingClientRect();
-      blobRef.current.style.left = `${e.clientX - rect.left}px`;
-      blobRef.current.style.top = `${e.clientY - rect.top}px`;
-    };
-    const footer = footerRef.current;
-    if (footer) footer.addEventListener('mousemove', handleMouseMove);
-    return () => { if (footer) footer.removeEventListener('mousemove', handleMouseMove); };
-  }, []);
-
   return (
-    <footer ref={footerRef} id="contact" className="relative overflow-hidden px-6 md:px-20 pt-16 md:pt-28 pb-12"
-      style={{ background: '#fff', borderTop: '1px solid #f0ece8' }}>
+    <footer id="contact" className="relative overflow-hidden px-6 md:px-20 pt-16 md:pt-28 pb-12"
+      style={{ background: '#fff' }}>
 
-      {/* Cursor blob */}
-      <div ref={blobRef} style={{
+      {/* Fading divider line */}
+      <div style={{
         position: 'absolute',
-        width: 500,
-        height: 500,
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(249,166,108,0.15) 0%, rgba(241,122,126,0.10) 40%, transparent 70%)',
-        transform: 'translate(-50%, -50%)',
-        pointerEvents: 'none',
-        transition: 'left 0.12s ease, top 0.12s ease',
-        filter: 'blur(8px)',
-        zIndex: 0,
+        top: 0, left: 0, right: 0,
+        height: '1px',
+        background: 'linear-gradient(90deg, transparent 0%, rgba(249,166,108,0.4) 30%, rgba(249,166,108,0.4) 70%, transparent 100%)',
       }} />
+
 
       <div className="max-w-7xl mx-auto relative" style={{ zIndex: 1 }}>
 
         {/* Top: two-column CTA + form */}
-        <div className="footer-top-grid mb-16" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center' }}>
+        <div className="footer-top-grid mb-16">
 
           {/* Left: CTA */}
           <div>

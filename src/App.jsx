@@ -1,5 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
+
+const Sofy = lazy(() => import('./pages/Sofy'));
 import { ThemeProvider } from './context/ThemeContext';
 import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
@@ -11,13 +13,6 @@ import BlogSection from './components/BlogSection';
 import ResumeSection from './components/ResumeSection';
 import FaqSection from './components/FaqSection';
 import Footer from './components/Footer';
-import BeyondTheLetter from './pages/BeyondTheLetter';
-import EveryGirl from './pages/EveryGirl';
-import EchoTouch from './pages/EchoTouch';
-import SuroskieBeauty from './pages/SuroskieBeauty';
-import WorkPlus from './pages/WorkPlus';
-import CreativeAgency from './pages/CreativeAgency';
-import Sofy from './pages/Sofy';
 
 function HomePage() {
   useEffect(() => {
@@ -49,16 +44,12 @@ function HomePage() {
 function App() {
   return (
     <ThemeProvider>
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/work/beyond-the-letter" element={<BeyondTheLetter />} />
-      <Route path="/work/every-girl-a-bright-future" element={<EveryGirl />} />
-      <Route path="/work/echotouch" element={<EchoTouch />} />
-      <Route path="/work/suroskie-beauty" element={<SuroskieBeauty />} />
-      <Route path="/work/work-plus" element={<WorkPlus />} />
-      <Route path="/work/creative-agency" element={<CreativeAgency />} />
-      <Route path="/work/sofy" element={<Sofy />} />
-    </Routes>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/work/sofy" element={<Sofy />} />
+        </Routes>
+      </Suspense>
     </ThemeProvider>
   );
 }

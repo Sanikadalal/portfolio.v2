@@ -148,7 +148,7 @@ export default function AboutMeSection() {
                   }}
                 >
                   <div style={{ position: 'absolute', top: -10, left: '50%', transform: 'translateX(-50%)', width: 16, height: 16, borderRadius: '50%', background: 'radial-gradient(circle at 35% 35%, #ff9a6c, #c0392b)', boxShadow: '0 2px 6px rgba(0,0,0,0.3)', zIndex: 20 }} />
-                  <img src={p.src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  <img src={p.src} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 </div>
               ))}
 
@@ -173,7 +173,7 @@ export default function AboutMeSection() {
                 }}
               >
                 <div style={{ position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)', width: 20, height: 20, borderRadius: '50%', background: 'radial-gradient(circle at 35% 35%, #ff9a6c, #c0392b)', boxShadow: '0 2px 8px rgba(0,0,0,0.35)', zIndex: 30 }} />
-                <img src="/image 6.jpg" alt="workspace" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <img src="/image 6.jpg" alt="workspace" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
 
                 {/* Caption changes based on state */}
                 <p style={{
@@ -187,7 +187,7 @@ export default function AboutMeSection() {
                   whiteSpace: 'nowrap',
                   transition: 'color 0.3s ease',
                 }}>
-                  {open ? 'more than just code  🎭' : 'where things come together ✦'}
+                  {open ? 'more than code ☕' : 'where things come together ✦'}
                 </p>
               </div>
 
